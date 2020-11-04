@@ -5,6 +5,13 @@ import store from './store'
 
 Vue.config.productionTip = false
 
+//进入路由之前做一些事情
+router.beforeEach((to,from,next)=>{
+  console.log(to.path)
+  next()
+})
+
+
 new Vue({
   router,
   store,

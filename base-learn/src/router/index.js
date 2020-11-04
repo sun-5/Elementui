@@ -3,12 +3,21 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
-const routes = [
-  
-]
 
 const router = new VueRouter({
-  routes
+  routes:[
+    {
+      name:'home',
+      path:'/home/:id',
+      component:()=>import('../views/Home.vue'),
+      children:[
+        {
+          path:'/child',
+          component:()=>import('../views/Child.vue')
+        }
+      ]
+    }
+  ]
 })
 
 export default router
