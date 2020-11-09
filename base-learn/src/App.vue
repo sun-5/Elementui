@@ -1,9 +1,9 @@
 <template>
   <div>
-    <router-link to="/home">Home</router-link>
     <router-view></router-view>
-    <button @click="toHome">跳转APP主页</button>
-    <div id="app" style="display:none">
+    <div id="app" style="display: none">
+      <router-link to="/home">Home</router-link>
+      <button @click="toHome">跳转APP主页</button>
       <h1>App组件</h1>
       <h3>{{ appmsg }}</h3>
       <button @click="passapp">app——child传递</button>
@@ -33,11 +33,11 @@ export default {
       //bus传递事件和值
       bus.$emit("busmsg", "来自APP通过bus传递的消息！");
     },
-    toHome(){
+    toHome() {
       // this.$router.push('/')
-       //  this.$router.push({path:'/home',query:{name:'jack'}})
-      this.$router.push({name:'home',params:{id:3333}})
-    }
+      //  this.$router.push({path:'/home',query:{name:'jack'}})
+      this.$router.push({ name: "home", params: { id: 3333 } });
+    },
   },
   mounted() {
     bus.$on("buschild", (val) => {
