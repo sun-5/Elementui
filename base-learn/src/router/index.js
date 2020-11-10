@@ -8,8 +8,8 @@ const router = new VueRouter({
   routes:[
     {
       path:'/',
-      component:()=>import('../views/element/Pop.vue'),
-      redirect:'/pop'
+      component:()=>import('../views/element/Form.vue'),
+      redirect:'/form'
     },
     {
       name:'home',
@@ -29,6 +29,14 @@ const router = new VueRouter({
     {
       path:'/pop',
       component:()=>import('../views/element/Pop.vue')
+    },
+    {
+      path:'/table',
+      component:()=>import('../views/element/Table.vue'),
+    },
+    {
+      path:'/form',
+      component:()=>import('../views/element/Form.vue'),
     }
   ]
 })
