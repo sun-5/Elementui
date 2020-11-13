@@ -10,15 +10,15 @@ module.exports = {
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    'prettier/prettier': 'off',
-    "vue/no-unused-components": "off"
-    //  [
-    //   'error',
-    //   {
-    //     semi: false,
-    //     singleQuote: true,
-    //     printWidth: 160
-    //   }
-    // ]
+
+    'vue/no-unused-components': 'off',
+    'prettier/prettier': [
+      'error',
+      {
+        semi: false,
+        singleQuote: true,
+        printWidth: 160
+      }
+    ]
   }
 }

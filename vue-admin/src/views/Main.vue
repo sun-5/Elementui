@@ -3,20 +3,29 @@
     <el-aside width="200px"><com-aside></com-aside></el-aside>
     <el-container>
       <el-header><com-header></com-header></el-header>
-      <el-main>Main</el-main>
+      <com-tab></com-tab>
+      <el-main>
+        <router-view></router-view>
+      </el-main>
     </el-container>
   </el-container>
 </template>
 
 <script>
-import ComHeader from "../components/ComHeader";
-import ComAside from "../components/ComAside";
+import ComHeader from '../components/ComHeader'
+import ComAside from '../components/ComAside'
+import ComTab from '../components/ComTab'
 export default {
   components: {
     ComHeader,
     ComAside,
-  },
-};
+    ComTab
+  }
+}
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+.el-header {
+  background: #333;
+}
+</style>
