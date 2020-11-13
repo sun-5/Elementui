@@ -1,6 +1,6 @@
 <template>
   <el-container style="height:100%">
-    <el-aside width="200px"><com-aside></com-aside></el-aside>
+    <el-aside width="auto"><com-aside></com-aside></el-aside>
     <el-container>
       <el-header><com-header></com-header></el-header>
       <com-tab></com-tab>

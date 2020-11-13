@@ -15,7 +15,7 @@ service.interceptors.request.use(
     console.log(err)
   }
 )
-
+//添加响应拦截器
 service.interceptors.response.use(
   response => {
     let res = {}
@@ -27,3 +27,5 @@ service.interceptors.response.use(
     console.log(err)
   }
 )
+
+export default service
