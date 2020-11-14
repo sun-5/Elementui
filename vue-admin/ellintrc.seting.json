@@ -1,0 +1,41 @@
+{
+    "workbench.iconTheme": "vscode-icons",
+    "workbench.colorTheme": "One Dark Pro",
+    "editor.fontSize": 16,
+    "editor.fontFamily": "Fira Code,微软雅黑,Consolas, 'Courier New', monospace",
+    "php.validate.executablePath": "D:/phpstudy_pro/Extensions/php/php7.3.4nts/php.exe",
+    "workbench.startupEditor": "newUntitledFile",
+    "[html]": {
+        "editor.defaultFormatter": "HookyQR.beautify"
+    },
+    "liveServer.settings.donotShowInfoMsg": true,
+    "[javascript]": {
+        "editor.defaultFormatter": "HookyQR.beautify"
+    },
+    "explorer.confirmDragAndDrop": false,
+    "explorer.confirmDelete": false,
+    "liveServer.settings.donotVerifyTags": true,
+    "git.enableSmartCommit": true,
+    "vsicons.dontShowNewVersionMessage": true,
+    "eslint.codeAction.showDocumentation": {
+        "enable": true
+    },
+    
+    //保存自动修复
+    // "eslint.autoFixOnSave": true,
+    // 添加 vue ⽀持
+    "eslint.validate": [
+        "javascript",
+        "javascriptreact",
+        "html",
+         "vue",
+    ],
+    // "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
+    "[vue]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "editor.minimap.enabled": false,
+}

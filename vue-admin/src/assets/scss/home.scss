@@ -1,22 +1,92 @@
-.home{
- .num{
-     display: flex;
-     flex-wrap:wrap;
-     justify-content: space-between;
+.home {
+    .user {
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 20px;
+        margin-bottom: 20px;
 
-     .el-card{
-         width: 32%;
-         margin-bottom: 20px;
-     }
-    
-     }
-     .graph{
+        img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-right: 40px;
+        }
+
+        &Info {
+            .name {
+                font-size: 32px;
+                margin-bottom: 10px;
+            }
+
+            .access {
+                color: #999;
+            }
+        }
+
+    }
+
+    .loginInfo {
+        p {
+            line-height: 28px;
+            font-size: 14px;
+            color: #999;
+
+            span {
+                color: #666;
+                margin-left: 60px;
+            }
+        }
+
+    }
+
+    .num {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        
+        .icon {
+            font-size: 30px;
+            line-height: 80px;
+            width: 80px;
+            height: 80px;
+            text-align: center;
+            color: #fff;
+        }
+        .detail{
+            margin-left: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            .num{
+                font-size: 30px;
+                margin-bottom: 10px;
+            }
+            .txt{
+                font-size: 14px;
+                text-align: center;
+                color: #999;
+            }
+        }
+
+        .el-card {
+            width: 32%;
+            margin-bottom: 20px;
+        // /deep/ &__body{
+        //         display: flex;
+        //     }
+        }
+
+    }
+
+    .graph {
         margin-top: 20px;
         display: flex;
         justify-content: space-between;
-        .el-card{
+
+        .el-card {
             width: 48%;
             margin-bottom: 20px;
         }
- }
+    }
 }

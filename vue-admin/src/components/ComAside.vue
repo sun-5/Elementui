@@ -1,5 +1,7 @@
 <template>
   <el-menu :collapse="isCollapse" default-active="2" class="el-menu-vertical-demo" background-color="#696969" text-color="#fff" active-text-color="#ffd04b">
+    <h3 v-show="!isCollapse">皮卡丘管理后台</h3>
+    <h3 v-show="isCollapse">后台</h3>
     <!-- 无二级 -->
     <el-menu-item v-for="item in noChild" :key="item.path" :index="item.path" @click="clickMenu(item)">
       <i :class="'el-icon-' + item.icon"></i>
@@ -13,9 +15,7 @@
         <span>{{ item.label }}</span>
       </template>
       <el-menu-item-group>
-        <el-menu-item @click="clickMenu(subitem)" :index="subitem.path" v-for="(subitem, subindex) in item.children" :key="subindex">{{
-          subitem.label
-        }}</el-menu-item>
+        <el-menu-item @click="clickMenu(subitem)" :index="subitem.path" v-for="(subitem, subindex) in item.children" :key="subindex"> {{ subitem.label }}</el-menu-item>
       </el-menu-item-group>
     </el-submenu>
   </el-menu>
@@ -84,10 +84,15 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
 .el-menu {
   height: 100%;
   border: none;
+  h3 {
+    color: #fff;
+    text-align: center;
+    line-height: 48px;
+  }
 }
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: 200px;
