@@ -65,7 +65,7 @@ header {
   }
 }
 </style>
-<style lang="scss">
+<style lang="scss" scoped>
 .el-breadcrumb__item .el-breadcrumb__inner {
   color: #bbb;
   cursor: pointer;
