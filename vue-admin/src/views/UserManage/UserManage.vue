@@ -1,26 +1,25 @@
 <template>
   <div class="manage">
-    <el-dialog :title="operateType === 'add' ? '新增用户' : '更新用户'" :visible.sync="dialogTableVisible">
-      <el-table :data="tableData">
-        <el-table-column property="date" label="日期" width="150"></el-table-column>
-        <el-table-column property="name" label="姓名" width="200"></el-table-column>
-        <el-table-column property="address" label="地址"></el-table-column>
-      </el-table>
+    <el-dialog :title="operateType === 'add' ? '新增用户' : '更新用户'" :visible.sync="isShow">
+      <com-form :formLabel="operateFormLabel" :form="operateForm" ref="form"></com-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="isShow = false">取 消</el-button>
+        <el-button type="primary" @click="confirm">确 定</el-button>
+      </div>
     </el-dialog>
     <div class="manage-header">
-      <el-button type="primary">新增</el-button>
-      <com-form inline :formLabel="formLabel" :form="searchForm">
-        <el-button type="primary">搜索</el-button>
+      <el-button type="primary" @click="addUser">+ 新增</el-button>
+      <com-form inline :formLabel="formLabel" :form="searchFrom">
+        <el-button type="primary" @click="getList(searchFrom.keyword)">搜索</el-button>
       </com-form>
     </div>
-    <com-table :tableData="tableData" :tableLabel="tableLabel" :config="config" @changePage="getList"></com-table>
+    <com-table :tableData="tableData" :tableLabel="tableLabel" :config="config" @changePage="getList()" @edit="editUser" @del="delUser"></com-table>
   </div>
 </template>
 
 <script>
-import ComForm from '../../components/ComForm.vue'
-import ComTable from '../../components/ComTable.vue'
-
+import ComForm from '../../components/ComForm'
+import ComTable from '../../components/ComTable'
 export default {
   components: {
     ComForm,
@@ -29,42 +28,7 @@ export default {
   data() {
     return {
       operateType: 'add',
-      operateForm: {
-        name: '',
-        addr: '',
-        age: '',
-        birth: '',
-        sex: ''
-      },
-      opreateFormLabel: [
-        {
-          model: 'name',
-          label: '姓名'
-        },
-        {
-          model: 'age',
-          label: '年龄'
-        },
-        {
-          model: 'sex',
-          label: '性别',
-          opts: ''
-        },
-        {
-          model: 'birth',
-          label: '出生日期'
-        },
-        {
-          model: 'addr',
-          label: '地址'
-        }
-      ],
-      //父组件定义数据 传给 子组件
-      config: {
-        page: 1,
-        total: 30,
-        loading: false
-      },
+      isShow: false,
       tableData: [],
       tableLabel: [
         {
@@ -90,25 +54,71 @@ export default {
           width: 320
         }
       ],
-      searchForm: {
+      config: {
+        page: 1,
+        total: 30,
+        loading: false
+      },
+      operateForm: {
+        name: '',
+        addr: '',
+        age: '',
+        birth: '',
+        sex: ''
+      },
+      operateFormLabel: [
+        {
+          model: 'name',
+          label: '姓名'
+        },
+        {
+          model: 'age',
+          label: '年龄'
+        },
+        {
+          model: 'sex',
+          label: '性别',
+          type: 'select',
+          opts: [
+            {
+              label: '男',
+              value: 1
+            },
+            {
+              label: '女',
+              value: 0
+            }
+          ]
+        },
+        {
+          model: 'birth',
+          label: '出生日期',
+          type: 'date'
+        },
+        {
+          model: 'addr',
+          label: '地址'
+        }
+      ],
+      searchFrom: {
         keyword: ''
       },
       formLabel: [
         {
           model: 'keyword',
-          label: '',
-          options: []
+          label: ''
         }
       ]
     }
   },
   methods: {
-    getList() {
+    getList(name = '') {
       this.config.loading = true
       this.$http
         .get('/api/user/getUser', {
           params: {
-            page: this.config.page
+            page: this.config.page,
+            name
           }
         })
         .then(res => {
@@ -120,8 +130,60 @@ export default {
           this.config.loading = false
         })
     },
-    changePage(val) {
-      console.log(val)
+    addUser() {
+      this.operateForm = {}
+      this.operateType = 'add'
+      this.isShow = true
+    },
+    editUser(row) {
+      this.operateType = 'edit'
+      this.isShow = true
+      this.operateForm = row
+    },
+    confirm() {
+      if (this.operateType === 'edit') {
+        this.$http.post('/api/user/edit', this.operateForm).then(res => {
+          console.log(res.data)
+          this.isShow = false
+          this.getList()
+        })
+      } else {
+        this.$http.post('/api/user/add', this.operateForm).then(res => {
+          console.log(res.data)
+          this.isShow = false
+          this.getList()
+        })
+      }
+    },
+    delUser(row) {
+      this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      })
+        .then(() => {
+          let id = row.id
+          this.$http
+            .get('/api/user/del', {
+              params: {
+                id
+              }
+            })
+            .then(res => {
+              console.log(res.data)
+              this.$message({
+                type: 'success',
+                message: '删除成功!'
+              })
+              this.getList()
+            })
+        })
+        .catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消删除'
+          })
+        })
     }
   },
   created() {
@@ -131,5 +193,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '~@/assets/scss/common.scss';
+@import '@/assets/scss/common';
 </style>
