@@ -4,9 +4,9 @@ import userApi from './user'
 import permissionApi from './permission'
 
 // 设置200-2000毫秒延时请求数据
-// Mock.setup({
-//   timeout: '200-2000'
-// })
+Mock.setup({
+  timeout: '200-2000'
+})
 
 // 首页相关
 // 拦截的是 /home/getData
