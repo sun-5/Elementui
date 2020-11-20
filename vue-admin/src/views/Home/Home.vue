@@ -136,11 +136,7 @@ export default {
       })
     }
   },
-  mounted() {
-    this.$http('/home/getData').then(res => {
-      console.log(res.data)
-    })
-  },
+
   created() {
     this.getTableData()
   }
