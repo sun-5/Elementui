@@ -33,6 +33,7 @@ export default {
         if (res.code === 20000) {
           this.$store.commit('clearMenu')
           this.$store.commit('setMenu', res.data.menu)
+          this.$store.commit('setToken', this.$router)
           this.$store.commit('addMenu', this.$router)
           this.$router.push({ name: 'home' })
         } else {

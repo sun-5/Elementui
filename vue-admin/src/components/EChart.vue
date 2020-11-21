@@ -1,4 +1,3 @@
-<!--  -->
 <template>
   <div class="" style="height:100%" ref="myechart">
     echart

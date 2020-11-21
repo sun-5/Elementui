@@ -31,13 +31,16 @@ export default {
   },
   computed: {
     noChild() {
-      return this.asideMenu.filter(item => !item.children)
+      return this.menu.filter(item => !item.children)
     },
     hasChild() {
-      return this.asideMenu.filter(item => item.children)
+      return this.menu.filter(item => item.children)
     },
     isCollapse() {
       return this.$store.state.tab.isCollapse
+    },
+    menu() {
+      return this.$store.state.tab.menu
     }
   },
   data() {
