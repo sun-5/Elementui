@@ -26,6 +26,9 @@ export default {
       }
     }
   },
+  mounted() {
+    this.checkLogin()
+  },
   methods: {
     login() {
       this.$http.post('api/permission/getMenu', this.form).then(res => {
@@ -40,7 +43,8 @@ export default {
           this.$message.warning(res.data.message)
         }
       })
-    }
+    },
+    checkLogin() {}
   }
 }
 </script>

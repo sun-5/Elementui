@@ -6,6 +6,8 @@ module.exports = {
     // }
   },
   // 配置scss全局变量
+  publicPath: process.env.NODE_ENV === 'production' ? './' : '/',
+  outputDir: 'dist',
   css: {
     loaderOptions: {
       sass: {

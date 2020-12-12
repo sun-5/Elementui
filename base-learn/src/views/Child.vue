@@ -21,7 +21,6 @@ export default {
   data(){
       return{
           childMsg:'child中的数据',
-         
       }
   },
   methods:{
